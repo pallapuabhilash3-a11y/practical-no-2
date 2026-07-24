@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+int binarySearch(int arr[], int low, int high, int key) {
+   if (high >= low) {
+       int mid = low + (high - low) / 2;
+       if (arr[mid] == key)
+           return mid + 1;
+       else if (arr[mid] > key)
+           return binarySearch(arr, low, mid - 1, key);
+       else
+           return binarySearch(arr, mid + 1, high, key);
+   }
+   return -1;
+}
+int main() {
+   int arr[] = {5, 8, 10, 13, 21, 23, 25, 43, 54, 75};
+   int key;
+   cout << "Enter the key to be searched: ";
+   cin >> key;
+   int result = binarySearch(arr, 0, 9, key);
+   if (result != -1)
+       cout << "Key found at position " << result << endl;
+   else
+       cout << "Key not found in the array" << endl;
+   return 0;
+}
